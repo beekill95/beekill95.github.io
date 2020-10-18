@@ -11,6 +11,8 @@ MD_ASSETS = $(CURRENT_DIR)_files
 
 nb: $(NB_FILE)
 md: $(MD_FILE)
+jl: $(CURRENT_DIR).jl
+	julia --project=@. --startup-file=no --history-file=no -e "using Weave; weave(\"$<\", out_path = :pwd)"
 
 %.md: %.ipynb
 	$(NBCONVERT) --to markdown $<
