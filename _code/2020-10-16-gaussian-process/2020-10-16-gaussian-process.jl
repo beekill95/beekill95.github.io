@@ -34,13 +34,13 @@ function squared_exponential_covariance(x, y; σ=1.0, ℓ=1.0)
 end
 
 """Calculate covariance matrix using the given kernel function"""
-function covariance_matrix(x::Array{Float64, 1}; kernel_func=squared_exponential_covariance)
+function covariance_matrix(x::Array{Float64,1}; noise_level=0.0, kernel_func=squared_exponential_covariance)
     length, = size(x)
     C = Array{Float64}(undef, length, length)
 
     for i in 1:length
         for j in 1:length
-            C[i, j] = kernel_func(x[i], x[j])
+            C[i, j] = kernel_func(x[i], x[j]) + (i == j ? noise_level : 0)
         end
     end
 
@@ -54,8 +54,8 @@ Returns a list of prediction (mean, variance) of each point.
 t = y + noise
 y = ∑w * ϕ(x)
 """
-function gaussian_process(predicts::Array{Float64, 1}; targets::Array{Float64, 1}, observed::Array{Float64, 1}, kernel_func=squared_exponential_covariance)
-    Cn = covariance_matrix(observed; kernel_func=kernel_func)
+function gaussian_process(predicts::Array{Float64,1}; targets::Array{Float64,1}, observed::Array{Float64,1}, noise_level=0.0, kernel_func=squared_exponential_covariance)
+    Cn = covariance_matrix(observed, kernel_func=kernel_func, noise_level=noise_level)
     inv_Cn = inv(Cn)
 
     length, = size(predicts)
@@ -63,7 +63,7 @@ function gaussian_process(predicts::Array{Float64, 1}; targets::Array{Float64, 1
 
     for predict in predicts
         k = [kernel_func(predict, obs) for obs in observed]
-        kappa = kernel_func(predict, predict)
+        kappa = kernel_func(predict, predict) + noise_level
 
         mean = transpose(k) * inv_Cn * targets
         variance = kappa - transpose(k) * inv_Cn * k
@@ -75,7 +75,7 @@ function gaussian_process(predicts::Array{Float64, 1}; targets::Array{Float64, 1
 end
 
 # Generate training points
-x, y = generate_points(8)
+x, y = generate_points(8, noise_level=1.0)
 # Generate test points
 xtest, ytest = let
     x = -8:0.1:8
@@ -84,7 +84,7 @@ xtest, ytest = let
     x, y
 end
 
-predictions = gaussian_process(collect(xtest), targets=y, observed=x)
+predictions = gaussian_process(collect(xtest), targets=y, observed=x, noise_level=1.0)
 
 prediction_mean = first.(predictions)
 prediction_std = sqrt.(last.(predictions))
