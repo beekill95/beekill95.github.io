@@ -12,8 +12,22 @@
 #' and finally applying Gaussian processes to a toy problem.
 
 #' # The Math
+#' ## Bayesian Inference
+#' 
+#' Before diving into today's topic, it's worth reviewing Bayesian inference as it is the foundation of Gaussian process.
+#' As the name suggested, Bayesian inference uses Bayes' theorem to update probability ...
 #'
-#' Gaussian processes
+#' $$
+#' P(\boldsymbol{\theta} | \mathcal{D}) = \frac{P(\mathcal{D} | \boldsymbol{\theta}) P(\boldsymbol{\theta})}{P(\mathcal{D})}
+#' $$
+#'
+#' Here, Bayes' theorem tells us that in order to update the probability distribution of the parameters
+#' $\boldsymbol{\theta}$ given the data $\mathcal{D}$,
+#' we must divide the likelihood with the evidence.
+#' The likelihood, denoted by $P(\mathcal{D} | \boldsymbol{\theta})$, tells us how likely it is to see the observed data points
+#' ~given that the parameters are ...~
+#'
+#' ## Gaussian Process
 
 using Plots
 import Random
