@@ -1,19 +1,21 @@
 MKFILE_PATH:=$(abspath $(lastword $(MAKEFILE_LIST)))
 CURRENT_DIR:=$(notdir $(patsubst %/,%,$(dir $(MKFILE_PATH))))
 
+JULIA:=julia --project=@. --startup-file=no --history-file=no
+
 .DEFAULT_GOAL:=$(CURRENT_DIR).html
 $(CURRENT_DIR).html: $(CURRENT_DIR).jl precompiled.so
-	julia --project=@. --startup-file=no --history-file=no --sysimage precompiled.so -e "using Weave; weave(\"$<\", out_path = :pwd)"
+	$(JULIA) --sysimage precompiled.so -e "using Weave; weave(\"$<\", out_path = :pwd)"
 
 $(CURRENT_DIR).md: $(CURRENT_DIR).jl precompiled.so
-	julia --project=@. --startup-file=no --history-file=no --sysimage precompiled.so -e "using Weave; weave(\"$<\", out_path = :pwd, doctype=\"github\")"
+	$(JULIA) --sysimage precompiled.so -e "using Weave; weave(\"$<\", out_path = :pwd, doctype=\"github\")"
 
 precompiled.so: precompiled.jl
-	julia --project=@. --startup-file=no --history-file=no -e "using PackageCompiler; create_sysimage([:Plots], sysimage_path=\"$@\", precompile_execution_file=\"$<\")"
+	$(JULIA) -e "using PackageCompiler; create_sysimage([:Plots], sysimage_path=\"$@\", precompile_execution_file=\"$<\")"
 
 .PHONY: clean
 clean:
-	rm -r *.ipynb *.md *_files/
+	rm -r *.so *.html *.md figures
 
 .PHONY: publish
 publish: $(CURRENT_DIR).md
