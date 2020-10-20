@@ -24,3 +24,4 @@ _code/**/*.md
 # Intermediate outputs when writing using Weave.jl
 _code/**/*.html
 _code/**/*.so
+_code/**/figures
