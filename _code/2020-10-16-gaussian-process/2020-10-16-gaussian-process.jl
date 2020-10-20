@@ -17,17 +17,34 @@
 #' Before diving into today's topic, it's worth reviewing Bayesian inference as it is the foundation of Gaussian process.
 #' As the name suggested, Bayesian inference uses Bayes' theorem to update probability ...
 #'
+#' Usually, in Bayesian inference, the data is thought to come from a function $f$, which is parameterized by $\boldsymbol{\theta}$:
+#' $\mathcal{D} = f(\boldsymbol{\theta})$.
+#' Then, according to Bayes' theorem, one can derive the original parameters by the following equation:
+#'
 #' $$
-#' P(\boldsymbol{\theta} | \mathcal{D}) = \frac{P(\mathcal{D} | \boldsymbol{\theta}) P(\boldsymbol{\theta})}{P(\mathcal{D})}
+#' P(\boldsymbol{\theta} | \mathcal{D}) =
+#'     \frac{
+#'         \stackrel{\text{likelihood}}{P(\mathcal{D} | \boldsymbol{\theta})}
+#'         \stackrel{\text{prior}}{P(\boldsymbol{\theta})}
+#'     }{\underset{\text{evidence}}{P(\mathcal{D})}}
 #' $$
 #'
-#' Here, Bayes' theorem tells us that in order to update the probability distribution of the parameters
-#' $\boldsymbol{\theta}$ given the data $\mathcal{D}$,
-#' we must divide the likelihood with the evidence.
-#' The likelihood, denoted by $P(\mathcal{D} | \boldsymbol{\theta})$, tells us how likely it is to see the observed data points
-#' ~given that the parameters are ...~
+#' ...
+#' The _likelihood_, denoted by $P(\mathcal{D} | \boldsymbol{\theta})$, tells us how likely it is to see the observed data points
+#' when the parameters are $\boldsymbol{\theta}$.
+#' The _prior_, denoted by $P(\boldsymbol{\theta})$, is ...
+#' The _evidence_, denoted by $P(\mathcal{D})$, shows how probable it is to observed those data points.
+#' It is calculated by integrating over all possible parameters $\boldsymbol{\theta}$, which is often intractable
+#' and ...
+#' 
+#' Bayesian inference is a very powerful approach to machine learning.
+#' Many machine learning algorithms can be viewed under the light of Bayesian methods,
+#' such as neural network, which is an interesting topic for later posts.
+#' Now, we are ready to uncover the math behind Gaussian Processes.
 #'
-#' ## Gaussian Process
+#' ## Gaussian Processes
+#'
+#' This is something
 
 using Plots
 import Random
