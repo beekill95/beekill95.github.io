@@ -21,3 +21,6 @@ _code/**/*.ipynb
 _code/**/*_files
 _code/**/*.md
 
+# Intermediate outputs when writing using Weave.jl
+_code/**/*.html
+_code/**/*.so
