@@ -13,7 +13,7 @@
 
 #' # The Math
 #' ## Bayesian Inference
-#' 
+#'
 #' Before diving into today's topic, it's worth reviewing Bayesian inference as it is the foundation of Gaussian process.
 #' As the name suggested, Bayesian inference uses Bayes' theorem to update probability ...
 #'
@@ -22,10 +22,15 @@
 #' Then, according to Bayes' theorem, one can derive the original parameters by the following equation:
 #'
 #' $$
+#' \newcommand{\abovetext}[2]
+#' {
+#' \stackrel{\text{#1}}{#2}
+#' }
+#'
 #' P(\boldsymbol{\theta} | \mathcal{D}) =
 #'     \frac{
-#'         \stackrel{\text{likelihood}}{P(\mathcal{D} | \boldsymbol{\theta})}
-#'         \stackrel{\text{prior}}{P(\boldsymbol{\theta})}
+#'         \abovetext{likelihood}{P(\mathcal{D} | \boldsymbol{\theta})}
+#'         \abovetext{prior}{P(\boldsymbol{\theta})}
 #'     }{\underset{\text{evidence}}{P(\mathcal{D})}}
 #' $$
 #'
@@ -36,16 +41,25 @@
 #' The _evidence_, denoted by $P(\mathcal{D})$, shows how probable it is to observed those data points.
 #' It is calculated by integrating over all possible parameters $\boldsymbol{\theta}$, which is often intractable
 #' and ...
-#' 
+#'
 #' Bayesian inference is a very powerful approach to machine learning.
 #' Many machine learning algorithms can be viewed under the light of Bayesian methods,
 #' such as neural network, which is an interesting topic for later posts.
 #' Now, we are ready to uncover the math behind Gaussian Processes.
-#'
+
 #' ## Gaussian Processes
 #'
-#' This is something
+#' Gaussian process is a generalization of Gaussian distribution over a finite vector space to a function space of infinite dimension.
+#' Just like a Gaussian distribution is fully specified by its mean and covariance matrix,
+#' a Gaussian process is fully specified by a mean and a covariance _function_.
 
+#' # Intuition behind Gaussian processes
+#'
+#' ...
+
+#' # Applying Gaussian processes to a toy problem
+
+#  \stackrel{\text{likelihood}}{}
 using Plots
 import Random
 
@@ -124,4 +138,3 @@ prediction_std = sqrt.(last.(predictions))
 plot(x, y, xlab="x", ylab="f(x)", seriestype=:scatter, label="train", xlims=(-8, 8), markersize=4, markeralpha=1)
 plot!(xtest, ytest, seriestype=:scatter, label="test", markersize=3, markeralpha=0.8)
 plot!(xtest, prediction_mean, yerror=prediction_std, seriestype=:scatter, label="prediction mean", markersize=4, markeralpha=1)
-
