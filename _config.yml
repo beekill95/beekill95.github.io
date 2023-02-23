@@ -90,6 +90,8 @@ exclude:
   - CNAME
   - Makefile
   - environment.yml
-  - pyproject.toml
   - poetry.lock
-  - _code
+  - pyproject.toml
+  - _code/*
+  - .devcontainer/*
+  - .vim/*
