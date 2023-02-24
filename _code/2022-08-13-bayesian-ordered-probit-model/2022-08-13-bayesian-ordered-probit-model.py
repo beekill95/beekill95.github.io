@@ -19,6 +19,23 @@
 
 # %% [markdown]
 # # Ordinal Data in Real World
+#
+# Ordinal data is a categorical data type,
+# where the variables have ordered categories.
+# However, unlike metric data type,
+# where we can easily calculate the distance between variables,
+# we couldn't do the same with ordinal variables.
+#
+# There are many examples of ordinal data type in real world.
+# For instance, in many e-commerce websites such as Amazon, eBay, etc.,
+# ordinal data appeared as ratings given to a product by customers.
+# Or in schools or educational institutes,
+# letter grades given by teachers to evaluate the performance of students
+# on exams or tests can also be considered as ordinal data.
+#
+
+# Talk about ordinal data, but using 1, 2, 3
+# Talk about what we want to uncover with ordinal data type.
 
 # %% [markdown]
 # # Modelling
@@ -30,7 +47,7 @@
 # ## Results
 
 # %% [markdown]
-# # Conclusions
+# # Wrapups
 
 # %% [markdown]
 # # References
