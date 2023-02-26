@@ -55,6 +55,13 @@
 
 # %% [markdown]
 # # Modelling
+#
+# Introduce an underlying latent metric variable that the ordinal data come from.
+
+# Mathematical formation.
+
+# Undetermined conditions.
+# Thus, introduce some constraints to make the model determined.
 
 # %% [markdown]
 # # Implementation in Numpyro
@@ -63,7 +70,15 @@
 # ## Results
 
 # %% [markdown]
-# # Wrapups
+# # Wrap Up
+#
+# Brief summary of the ordered probit model.
+
+# Possible extensions of the model:
+# * Two groups.
+# * The underlying metric variable linearly depends on some variables.
+# * Robust to noise models.
+# => Reference back to my implementation and the book.
 
 # %% [markdown]
 # # References
