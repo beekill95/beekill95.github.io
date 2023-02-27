@@ -23,9 +23,9 @@ footer-links:
   flickr:
   github: beekill95
   instagram:
-  linkedin:
+  linkedin: nmbquan
   pinterest:
-  rss: # just type anything here for a working RSS icon
+  rss: rss
   twitter:
   stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
   youtube: # channel/<your_long_string> or user/<user-name>
@@ -95,3 +95,5 @@ exclude:
   - _code/*
   - .devcontainer/*
   - .vim/*
+  - dodo.py
+  - .cspell/*
