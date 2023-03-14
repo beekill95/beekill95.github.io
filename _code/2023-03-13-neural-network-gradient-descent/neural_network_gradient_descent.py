@@ -29,7 +29,7 @@
 # The thing was I struggled to derive the rules.
 # Therefore, I decided to write about this to commit it to my memory.
 # If it's not, then I guess I still have a place to refer to it later.
-#
+
 # The game plan is:
 # First, I'll introduce the network architecture along with the notations used.
 # Then, I'll derive the gradients of layers' weights and biases;
@@ -56,13 +56,62 @@
 # bold uppercase letters denote matrices, such as $\mathbf{X}$, $\mathbf{Y}$, etc.;
 # while bold lowercase letters denote column vectors, such as $\mathbf{w}$,
 # and normal letters denote scalar values, such as $\alpha$.
-#
+
 # Next, I denote $\mathbf{X}^{(l)}$ as the input to the $l$-th layer.
 # For instance, $\mathbf{X}^{(1)}$ is the input of the first hidden layer,
 # and also the input to our neural network;
 # and $\mathbf{X}^{(3)}$ is the input to the output layer.
 # Here, unlike common convention,
-# ...
+# each column in the input matrix $\mathbf{X}^{(1)}$ is a sample,
+# and each row is a feature.
+
+# TODO: include annotation
+# $$
+# \mathbf{X}^{(1)} = \begin{bmatrix}
+#   \mathbf{x}^{(1)}_1 & \mathbf{x}^{(1)}_2 & \ldots & \mathbf{x}^{(1)}_N
+# \end{bmarix},
+# $$
+# where $N$ is the number of input samples.
+
+# Similarly, $\mathbf{W}^{(l)}$ and $\mathbf{b}^{(l)}$
+# are the $l$-th layer's weight and bias.
+# The weight and bias of the $i$-th neuron $i$ in the $l$-th layer
+# are $\mathbf{w}^{(l,i)}$ and $b^{(l,i)}$, respectively.
+
+# $$
+# \mathbf{W}^{(3)} = \begin{bmatrix}
+#   \mathbf{w}^{(3,1)} & \mathbf{w}^{(3,2)}
+# \end{bmatrix},
+# \mathbf{b}^{(3)} = \begin{bmatrix}
+#   b^{(3,1)} \\
+#   b^{(3,2)} \\
+# \end{bmatrix}
+# $$
+
+# Furthermore, the linear output of the $l$-th layer is denoted as:
+# $$
+# \mathbf{Y}^{(l)} =
+# \mathbf{W}^{(l)}^T \mathbf{X}^{(l)}
+# + \mathbf{b}^{(l)} \mathbf{e}^T,
+# $$
+# where $\mathbf{e}$ is a vector of all 1 with appropriate
+# length to make the matrix addition works.
+#
+# Finally, the activation output of a layer is denoted as
+# $\mathbf{O}^{(l)} = g(\mathbf{Y}^{(l)})$.
+# Thus, the output of the neural network is
+# $$
+# \mathbf{O}^{(3)}
+# = g(\mathbf{Y}^{(3)})
+# = \begin{bmatrix}
+#   g(\mathbf{y}^{(3, 1)})^T \\
+#   g(\mathbf{y}^{(3, 2)})^T \\
+# \end{bmatrix}
+# = \begin{bmatrix}
+#   g(y^{(3, 1)}_1) & g(y^{(3, 1)}_2) & \ldots & g(y^{(3, 1)}_N) \\
+#   g(y^{(3, 2)}_1) & g(y^{(3, 2)}_2) & \ldots & g(y^{(3, 2)}_N) \\
+# \end{bmatrix}
+# $$
 
 # %% [markdown]
 # # Gradient Descent
